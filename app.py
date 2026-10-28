@@ -131,6 +131,15 @@ if st.button("Generate My Roadmap", type="primary"):
             except GroqError as e:
                 st.error("A Groq API error occurred.")
                 st.caption(str(e))
+                import streamlit as st
+
+try:
+    key = st.secrets.get("GROQ_API_KEY", "")
+    st.write("Secret found:", bool(key))
+    st.write("Key has surrounding spaces:", key != key.strip())
+    st.write("Key length:", len(key))
+except Exception as e:
+    st.error(f"Secrets configuration error: {type(e).__name__}")
 
             except Exception as e:
                 st.error(
